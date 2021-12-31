@@ -1,6 +1,8 @@
+// Package combs provides generic functions for producing combinations and
+// permutations from slices of any type.
 package combs
 
-// Creates a channel that returns all combinations of n items from v
+// Creates a channel that returns all combinations of n items from the slice v.
 func Combinations[T any](n int, v []T) <-chan []T {
 	ch := make(chan []T)
 	go func() {

@@ -1,6 +1,6 @@
 package combs
 
-// Permutations of an array of Integers
+// Creates a channel that returns all permutations of a slice of any type.
 // Uses Heap's Algorithm (thanks wikipedia)
 func Permutations[T any](a []T) <-chan []T {
         ch := make(chan []T)
