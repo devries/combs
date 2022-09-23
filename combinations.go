@@ -7,14 +7,14 @@ func Combinations[T any](n int, v []T) <-chan []T {
 	ch := make(chan []T)
 	go func() {
 		prefix := []T{}
-		stringCombinationsRecursor(prefix, n, v, ch)
+		combinationsRecursor(prefix, n, v, ch)
 		close(ch)
 	}()
 
 	return ch
 }
 
-func stringCombinationsRecursor[T any](prefix []T, n int, v []T, ch chan<- []T) {
+func combinationsRecursor[T any](prefix []T, n int, v []T, ch chan<- []T) {
 	if n == 1 {
 		for _, c := range v {
 			l := len(prefix)
@@ -41,8 +41,8 @@ func stringCombinationsRecursor[T any](prefix []T, n int, v []T, ch chan<- []T) 
 	newPrefix[l] = v[0]
 
 	// combinations with this element
-	stringCombinationsRecursor(newPrefix, n-1, v[1:], ch)
+	combinationsRecursor(newPrefix, n-1, v[1:], ch)
 
 	// combinations without this element
-	stringCombinationsRecursor(prefix, n, v[1:], ch)
+	combinationsRecursor(prefix, n, v[1:], ch)
 }
